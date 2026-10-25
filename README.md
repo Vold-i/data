@@ -1,5 +1,4 @@
 # data
-DEV-ops skill base from scratch
+base from scratch
 
-Тут знаходитимуться проекти щодо DEV-ops відповідно до їх створення
-також нотатки та корисні скрипти щодо цього напрямку
+
