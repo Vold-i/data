@@ -1,0 +1,47 @@
+виникає, коли в одному файлі внесли різні зміни
+ЯК СТВОРИТИ КОНФЛІКТ??
+1. потрібно створити файл 
+echo "hello world" > conflict.txt 
+2. редагуємо і комітимо з двох гілок 
+git switch feature //перемкнули гілку
+echo "hello from feature" > conflict.txt //змінили вміст файлу(бо одна стрілочка)
+git add . //відстежуємо файл
+git commit -m "feature editing conflict file" //закомітили
+
+git switch main
+echo "hello from main" > conflict.txt
+git add .
+git commit -m "main editin conflict file"
+
+тоді просимо ще також вивести вміст файлу і там будуть обидві версії
+
+3. робимо злиття
+ git switch main
+git merge feature  //гілки з фічер додали в мейн
+
+ПІСЛЯ git merge feature виникає конфлікт
+
+cat conflict.txt
+
+і тоді Git покаже обидві версії файлу:
+<<<<<<< HEAD
+hello from main
+=======
+hello from feature
+>>>>>>> feature
+
+варіант перший: просто змінити вміст файлу на інший
+тобто через ехо змінюємо вміст файлу на той, котрий вважаємо потрібним
+
+спосіб другий
+git checkout --ours conflict.txt //залишаємо версію файлу, яка була зроблена із поточної гілки
+git add .
+git commit -m "message" 
+
+або
+
+git checkout --theirs conflict.txt //то в тому випадку, якщо треба обрати версію з іншої гілки
+git add .
+git commit -m "message" 
+
+
